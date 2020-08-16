@@ -20,12 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d4c4da3-a319-43c0-8174-d8bc21d71b36" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../FastApi_Server/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FastApi_Server/.idea/FastApi_Server.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FastApi_Server/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FastApi_Server/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FastApi_Server/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FastApi_Server/main.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2/src/axios/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FastAPI_Server/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FastAPI_Server/lib/MonteCarloTreeSearch.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FastAPI_Server/lib/MonteCarloTreeSearch.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FastAPI_Server/model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GameState.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/MonteCarloTreeSearch.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/PiecePosition.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Web_Reversi/hello_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Web_Reversi/reversi.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Web_Reversi/reversi.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Web_Reversi/reversi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FastAPI_Server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FastAPI_Server/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameState.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Position.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +53,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GoLibraries">
+    <option name="urls">
+      <list>
+        <option value="file://$PROJECT_DIR$" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1fdGK3XbP6rD6ctOScxLgRZg7Z6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -53,9 +70,38 @@
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$/src/MCTNode" />
+      <recent name="$PROJECT_DIR$/src/GameState" />
+      <recent name="$PROJECT_DIR$/src/ReversiGame" />
+      <recent name="$PROJECT_DIR$/src/Game" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Go_MCTS" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-buildmode=c-shared -o libadd.so libadd.go" />
+      <kind value="DIRECTORY" />
+      <filePath value="$PROJECT_DIR$/src/main/main.go" />
+      <directory value="$PROJECT_DIR$/src/main" />
+      <output_directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -71,5 +117,52 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1920" y="917" width="1359" height="796" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597558081156">
+      <screen x="1920" y="0" width="1080" height="1920" />
+    </state>
+    <state x="217" y="817" width="1359" height="796" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597493557182" />
+    <state x="1920" y="917" width="1080" height="710" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597558081156" />
+    <state x="2591" y="730" width="379" height="874" key="FileChooserDialogImpl" timestamp="1597558076593">
+      <screen x="1920" y="0" width="1080" height="1920" />
+    </state>
+    <state x="1192" y="999" width="424" height="480" key="FileChooserDialogImpl/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597493556477" />
+    <state x="2591" y="730" width="379" height="874" key="FileChooserDialogImpl/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597558076593" />
+    <state width="1034" height="574" key="GridCell.Tab.0.bottom" timestamp="1597504768863">
+      <screen x="0" y="598" width="1920" height="1055" />
+    </state>
+    <state width="1034" height="574" key="GridCell.Tab.0.bottom/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597504768863" />
+    <state width="1034" height="574" key="GridCell.Tab.0.bottom/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597504590136" />
+    <state width="1034" height="574" key="GridCell.Tab.0.center" timestamp="1597504768863">
+      <screen x="0" y="598" width="1920" height="1055" />
+    </state>
+    <state width="1034" height="574" key="GridCell.Tab.0.center/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597504768863" />
+    <state width="1034" height="574" key="GridCell.Tab.0.center/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597504590136" />
+    <state width="1034" height="574" key="GridCell.Tab.0.left" timestamp="1597504768863">
+      <screen x="0" y="598" width="1920" height="1055" />
+    </state>
+    <state width="1034" height="574" key="GridCell.Tab.0.left/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597504768863" />
+    <state width="1034" height="574" key="GridCell.Tab.0.left/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597504590136" />
+    <state width="1034" height="574" key="GridCell.Tab.0.right" timestamp="1597504768863">
+      <screen x="0" y="598" width="1920" height="1055" />
+    </state>
+    <state width="1034" height="574" key="GridCell.Tab.0.right/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597504768863" />
+    <state width="1034" height="574" key="GridCell.Tab.0.right/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597504590136" />
+    <state x="898" y="876" key="SettingsEditor" timestamp="1597493394539">
+      <screen x="0" y="598" width="1920" height="1055" />
+    </state>
+    <state x="898" y="876" key="SettingsEditor/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597493394539" />
+    <state x="621" y="858" key="SettingsEditor/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597493355039" />
+    <state x="1443" y="1238" width="467" height="403" key="com.goide.refactor.move.GoMoveDeclarationDialog" timestamp="1597491401623">
+      <screen x="0" y="598" width="1920" height="1055" />
+    </state>
+    <state x="1443" y="1238" width="467" height="403" key="com.goide.refactor.move.GoMoveDeclarationDialog/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597491401623" />
+    <state x="1376" y="1078" width="1195" height="373" key="search.everywhere.popup" timestamp="1597574081161">
+      <screen x="1920" y="0" width="1080" height="1920" />
+    </state>
+    <state x="1376" y="1078" width="1195" height="373" key="search.everywhere.popup/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597574081161" />
+    <state x="2694" y="874" width="672" height="678" key="search.everywhere.popup/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597561938377" />
   </component>
 </project>
