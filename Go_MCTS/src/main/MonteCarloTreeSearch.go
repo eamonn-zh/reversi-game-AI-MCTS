@@ -13,19 +13,17 @@ import (
 )
 
 type ReversiGameResult struct {
-	State [8][8]int
+	State        [8][8]int
 	AvailablePos []PiecePosition
-	CurrTurn int
-	GameStatus int
+	CurrTurn     int
+	GameStatus   int
 }
-
 
 var reversiGame ReversiGame
 
 var blackBoardValues = [8][8]int{}
 
 var whiteBoardValues = [8][8]int{}
-
 
 var CONTINUE = 3
 
@@ -36,8 +34,8 @@ func initWeightedTable() {
 		{6, -2, 4, 3, 3, 4, -2, 6},
 		{-2, -4, -3, 1, 1, -3, -4, -2},
 		{4, -3, 2, 2, 2, 2, -3, 4},
-		{3, 1, 2, 0, 0,  2, 1, 3},
-		{3, 1, 2, 0, 0,  2, 1, 3},
+		{3, 1, 2, 0, 0, 2, 1, 3},
+		{3, 1, 2, 0, 0, 2, 1, 3},
 		{4, -3, 2, 2, 2, 2, -3, 4},
 		{-2, -4, -3, 1, 1, -3, -4, -2},
 		{6, -2, 4, 3, 3, 4, -2, 6},
@@ -49,7 +47,7 @@ func initWeightedTable() {
 	}
 }
 
-func heuristic(currTurn int, availaPos *[]PiecePosition, reverseCounts *[]int, maxReverse int) int{
+func heuristic(currTurn int, availaPos *[]PiecePosition, reverseCounts *[]int, maxReverse int) int {
 	maxIndex := 0
 	maxValue := -5
 	var values *[8][8]int
@@ -125,7 +123,7 @@ func monteCarloTreeSearch(root *MCTNode, secondLimit float64, playoutCount *int)
 		// Backpropagation
 		node.IncreVistedCount()
 		node.UpdateScores(result)
-		for node.Parent != nil{
+		for node.Parent != nil {
 			node = node.Parent
 			node.IncreVistedCount()
 			node.UpdateScores(result)
@@ -143,7 +141,6 @@ func startGame(choice int) *C.char {
 		root := NewMCTNode(&reversiGame.GameState, nil, &PiecePosition{X: 0, Y: 0})
 		reversiGame.PlayNextStep(monteCarloTreeSearch(&root, 5, &temp))
 	}
-
 	reversiGameResult := new(ReversiGameResult)
 	reversiGameResult.State = reversiGame.GameState.State
 	reversiGameResult.AvailablePos = reversiGame.GameState.GetAvailablePos(reversiGame.GameState.CurrTurn, nil, nil)
@@ -154,12 +151,13 @@ func startGame(choice int) *C.char {
 }
 
 //export waitForAI
-func waitForAI() *C.char{
+func waitForAI() *C.char {
 	reversiGameResult := new(ReversiGameResult)
 	root := NewMCTNode(&reversiGame.GameState, nil, &PiecePosition{X: 0, Y: 0})
 	pos := monteCarloTreeSearch(&root, 5, &temp)
 	if pos.X == -1 && pos.Y == -1 {
 		reversiGame.Pass()
+		reversiGameResult.GameStatus = 1000
 	} else {
 		reversiGame.PlayNextStep(pos)
 		if reversiGame.IsGameOver() {
@@ -167,11 +165,11 @@ func waitForAI() *C.char{
 			jsonData, _ := json.Marshal(reversiGameResult)
 			return C.CString(string(jsonData))
 		}
+		reversiGameResult.GameStatus = CONTINUE
 	}
 	reversiGameResult.State = reversiGame.GameState.State
 	reversiGameResult.AvailablePos = reversiGame.GameState.GetAvailablePos(reversiGame.GameState.CurrTurn, nil, nil)
 	reversiGameResult.CurrTurn = reversiGame.GameState.CurrTurn
-	reversiGameResult.GameStatus = CONTINUE
 	jsonData, _ := json.Marshal(reversiGameResult)
 	return C.CString(string(jsonData))
 }
@@ -192,6 +190,11 @@ func nextStep(positionX int, positionY int) *C.char {
 	return C.CString(string(jsonData))
 }
 
+//export passCurrentTurn
+func passCurrentTurn() *C.char {
+	reversiGame.Pass()
+	return waitForAI()
+}
 
 func main() {
 }

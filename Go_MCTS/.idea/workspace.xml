@@ -20,22 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d4c4da3-a319-43c0-8174-d8bc21d71b36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../2/src/axios/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FastAPI_Server/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FastAPI_Server/lib/MonteCarloTreeSearch.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FastAPI_Server/lib/MonteCarloTreeSearch.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../FastAPI_Server/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/GameState.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/MonteCarloTreeSearch.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/PiecePosition.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Web_Reversi/hello_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Web_Reversi/reversi.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Web_Reversi/reversi.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Web_Reversi/reversi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FastAPI_Server/lib/MonteCarloTreeSearch.so" beforeDir="false" afterPath="$PROJECT_DIR$/../FastAPI_Server/lib/MonteCarloTreeSearch.so" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FastAPI_Server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FastAPI_Server/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameState.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Position.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonteCarloTreeSearch.so" beforeDir="false" afterPath="$PROJECT_DIR$/MonteCarloTreeSearch.so" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MonteCarloTreeSearch.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MonteCarloTreeSearch.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_Reversi/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_Reversi/src/App.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +115,10 @@
     </state>
     <state x="217" y="817" width="1359" height="796" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597493557182" />
     <state x="1920" y="917" width="1080" height="710" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597558081156" />
+    <state x="742" y="646" width="912" height="900" key="CommitChangelistDialog2" timestamp="1597596458683">
+      <screen x="0" y="598" width="1920" height="1055" />
+    </state>
+    <state x="742" y="646" width="912" height="900" key="CommitChangelistDialog2/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597596458683" />
     <state x="2591" y="730" width="379" height="874" key="FileChooserDialogImpl" timestamp="1597558076593">
       <screen x="1920" y="0" width="1080" height="1920" />
     </state>

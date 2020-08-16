@@ -1,1 +1,3 @@
- npm install --save axios vue-router
+ go build -buildmode=c-shared -o MonteCarloTreeSearch.so main
+ 
+ npm install --save axios

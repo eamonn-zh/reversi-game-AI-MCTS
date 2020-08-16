@@ -25,6 +25,7 @@ app.add_middleware(
 lib.startGame.restype = c_char_p
 lib.nextStep.restype = c_char_p
 lib.waitForAI.restype = c_char_p
+lib.passCurrentTurn.restype = c_char_p
 
 
 @app.get("/start/{order}")
@@ -44,6 +45,13 @@ async def play_next_step(positionX: int, positionY: int):
 @app.get("/wait")
 async def wait_for_AI():
     reversi_game_result = lib.waitForAI().decode()
+    json_obj = json.loads(reversi_game_result)
+    return json_obj
+
+
+@app.get("/pass")
+async def pass_current_turn():
+    reversi_game_result = lib.passCurrentTurn.decode()
     json_obj = json.loads(reversi_game_result)
     return json_obj
 

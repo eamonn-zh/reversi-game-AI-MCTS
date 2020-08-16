@@ -83,6 +83,8 @@ extern char* waitForAI();
 
 extern char* nextStep(GoInt p0, GoInt p1);
 
+extern char* passCurrentTurn();
+
 #ifdef __cplusplus
 }
 #endif
