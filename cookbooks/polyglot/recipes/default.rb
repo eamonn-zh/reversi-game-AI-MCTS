@@ -69,16 +69,22 @@ package ['nodejs']
 # Compile Go share library
 execute 'export GOPATH=`pwd` && go build -buildmode=c-shared -o MonteCarloTreeSearch.so main' do
   cwd project_home + '/Go_MCTS'
+  user username
+  environment 'HOME' => user_home
 end
 
 
 # Copy Go share library to FastAPI_Server folder
 execute 'cp MonteCarloTreeSearch.so ' + project_home + '/FastAPI_Server/lib' do
   cwd project_home + '/Go_MCTS'
+  user username
+  environment 'HOME' => user_home
 end
 
 execute 'cp MonteCarloTreeSearch.h ' + project_home + '/FastAPI_Server/lib' do
   cwd project_home + '/Go_MCTS'
+  user username
+  environment 'HOME' => user_home
 end
 
 
@@ -91,13 +97,9 @@ end
 
 
 # Run Node.js Server
-execute 'npm install && port=8080 npm run serve &' do
+execute 'npm install && npm run serve &' do
   cwd project_home + '/Web_Reversi'
+  user username
+  environment 'HOME' => user_home
 end
-
-
-
-
-
-
 
