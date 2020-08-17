@@ -96,8 +96,15 @@ execute 'python3 main.py &' do
 end
 
 
+# Download node_modules
+execute 'npm install && npm audit fix' do
+  cwd project_home + '/Web_Reversi'
+end
+
+
+
 # Run Node.js Server
-execute 'npm install && npm run serve &' do
+execute 'npm run serve' do
   cwd project_home + '/Web_Reversi'
   user username
   environment 'HOME' => user_home
