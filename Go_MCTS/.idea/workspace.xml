@@ -19,20 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c4da3-a319-43c0-8174-d8bc21d71b36" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../FastAPI_Server/lib/MonteCarloTreeSearch.so" beforeDir="false" afterPath="$PROJECT_DIR$/../FastAPI_Server/lib/MonteCarloTreeSearch.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FastAPI_Server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FastAPI_Server/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonteCarloTreeSearch.h" beforeDir="false" afterPath="$PROJECT_DIR$/MonteCarloTreeSearch.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonteCarloTreeSearch.so" beforeDir="false" afterPath="$PROJECT_DIR$/MonteCarloTreeSearch.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/MCTNode.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MCTNode.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/MonteCarloTreeSearch.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MonteCarloTreeSearch.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web_Reversi/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web_Reversi/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web_Reversi/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_Reversi/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web_Reversi/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_Reversi/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../re.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="3d4c4da3-a319-43c0-8174-d8bc21d71b36" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,10 +122,10 @@
     </state>
     <state x="217" y="817" width="1359" height="796" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597493557182" />
     <state x="1920" y="917" width="1080" height="710" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597558081156" />
-    <state x="742" y="646" width="912" height="900" key="CommitChangelistDialog2" timestamp="1597602269221">
+    <state x="742" y="646" width="912" height="900" key="CommitChangelistDialog2" timestamp="1597666342083">
       <screen x="0" y="598" width="1920" height="1055" />
     </state>
-    <state x="742" y="646" width="912" height="900" key="CommitChangelistDialog2/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597602269221" />
+    <state x="742" y="646" width="912" height="900" key="CommitChangelistDialog2/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597666342083" />
     <state x="2591" y="730" width="379" height="874" key="FileChooserDialogImpl" timestamp="1597558076593">
       <screen x="1920" y="0" width="1080" height="1920" />
     </state>
@@ -169,10 +156,10 @@
     </state>
     <state x="898" y="876" key="SettingsEditor/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597493394539" />
     <state x="621" y="858" key="SettingsEditor/0.598.1920.1055/1920.0.1080.1920@1920.0.1080.1920" timestamp="1597493355039" />
-    <state x="692" y="828" width="800" height="524" key="Vcs.Push.Dialog.v2" timestamp="1597602274285">
+    <state x="692" y="828" width="800" height="524" key="Vcs.Push.Dialog.v2" timestamp="1597666347530">
       <screen x="0" y="598" width="1920" height="1055" />
     </state>
-    <state x="692" y="828" width="800" height="524" key="Vcs.Push.Dialog.v2/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597602274285" />
+    <state x="692" y="828" width="800" height="524" key="Vcs.Push.Dialog.v2/0.598.1920.1055/1920.0.1080.1920@0.598.1920.1055" timestamp="1597666347530" />
     <state x="1443" y="1238" width="467" height="403" key="com.goide.refactor.move.GoMoveDeclarationDialog" timestamp="1597491401623">
       <screen x="0" y="598" width="1920" height="1055" />
     </state>
