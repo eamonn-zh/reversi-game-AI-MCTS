@@ -19,12 +19,9 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 /* Start of preamble from import "C" comments.  */
 
 
-#line 5 "MonteCarloTreeSearch.go"
+#line 4 "MonteCarloTreeSearch.go"
 
-		typedef struct PiecePosition{
-			int X;
-			int Y;
-		} PiecePosition;
+		#include <stdlib.h>
 	
 #line 1 "cgo-generated-wrapper"
 
@@ -84,6 +81,8 @@ extern char* waitForAI();
 extern char* nextStep(GoInt p0, GoInt p1);
 
 extern char* passCurrentTurn();
+
+extern void freeMemory(char* p0);
 
 #ifdef __cplusplus
 }

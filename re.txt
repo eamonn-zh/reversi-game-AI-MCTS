@@ -1,3 +1,0 @@
- go build -buildmode=c-shared -o MonteCarloTreeSearch.so main
- 
- npm install --save axios

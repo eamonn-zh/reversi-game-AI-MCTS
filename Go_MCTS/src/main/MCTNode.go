@@ -23,6 +23,24 @@ func NewMCTNode(gameState *GameState, parent *MCTNode, diff *PiecePosition) MCTN
 	return node
 }
 
+func CopyMCTNode(mctNode *MCTNode) MCTNode {
+	newMCTNode := new(MCTNode)
+	scoreMap := map[int]int{}
+	scoreMap[1] = mctNode.ScoreMap[1]
+	scoreMap[0] = mctNode.ScoreMap[0]
+	scoreMap[-1] = mctNode.ScoreMap[-1]
+	newMCTNode.ScoreMap = scoreMap
+	newMCTNode.Parent = mctNode.Parent
+	newMCTNode.Children = make([]*MCTNode, len(mctNode.Children))
+	copy(newMCTNode.Children, mctNode.Children)
+	newMCTNode.UnexpandedChildren = make([]*MCTNode, len(mctNode.UnexpandedChildren))
+	copy(newMCTNode.UnexpandedChildren, mctNode.UnexpandedChildren)
+	newMCTNode.Diff = PiecePosition{mctNode.Diff.X, mctNode.Diff.Y}
+	newMCTNode.VisitedCount = mctNode.VisitedCount
+	newMCTNode.GameState = CopyGameState(mctNode.GameState)
+	return *newMCTNode
+}
+
 func (mctNode *MCTNode) InitUnexpChildren() {
 
 	turn := mctNode.GameState.CurrTurn
@@ -43,13 +61,13 @@ func (mctNode *MCTNode) InitUnexpChildren() {
 }
 
 func (mctNode *MCTNode) ExpandChild() *MCTNode {
-	child := mctNode.UnexpandedChildren[len(mctNode.UnexpandedChildren) - 1]
-	mctNode.UnexpandedChildren = mctNode.UnexpandedChildren[:len(mctNode.UnexpandedChildren) - 1]
+	child := mctNode.UnexpandedChildren[len(mctNode.UnexpandedChildren)-1]
+	mctNode.UnexpandedChildren = mctNode.UnexpandedChildren[:len(mctNode.UnexpandedChildren)-1]
 	mctNode.Children = append(mctNode.Children, child)
 	return child
 }
 
-func (mctNode *MCTNode) IsFullyExpanded() bool{
+func (mctNode *MCTNode) IsFullyExpanded() bool {
 	return len(mctNode.UnexpandedChildren) == 0
 }
 
@@ -59,18 +77,18 @@ func (mctNode *MCTNode) IsFinalLeafNode() bool {
 
 func (mctNode *MCTNode) GetScore() int {
 	wins := mctNode.ScoreMap[mctNode.GameState.CurrTurn]
-	loses := mctNode.ScoreMap[mctNode.GameState.CurrTurn * -1]
+	loses := mctNode.ScoreMap[mctNode.GameState.CurrTurn*-1]
 	return wins - loses
 }
 
 func (mctNode *MCTNode) FindBestChild(c float64) *MCTNode {
-	maxUCTValue := float64(mctNode.Children[0].GetScore()) / float64(mctNode.Children[0].VisitedCount) +
-		math.Sqrt(c * 2 * math.Log(float64(mctNode.VisitedCount) / float64(mctNode.Children[0].VisitedCount)))
+	maxUCTValue := float64(mctNode.Children[0].GetScore())/float64(mctNode.Children[0].VisitedCount) +
+		math.Sqrt(c*2*math.Log(float64(mctNode.VisitedCount)/float64(mctNode.Children[0].VisitedCount)))
 	bestChild := mctNode.Children[0]
 
 	for _, i := range mctNode.Children {
-		UCTValue := float64(i.GetScore()) / float64(i.VisitedCount) +
-			math.Sqrt(c * math.Log(float64(mctNode.VisitedCount) / float64(i.VisitedCount)))
+		UCTValue := float64(i.GetScore())/float64(i.VisitedCount) +
+			math.Sqrt(c*math.Log(float64(mctNode.VisitedCount)/float64(i.VisitedCount)))
 		if UCTValue > maxUCTValue {
 			maxUCTValue = UCTValue
 			bestChild = i
