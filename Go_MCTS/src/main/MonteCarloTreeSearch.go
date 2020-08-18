@@ -10,7 +10,7 @@ import (
 	"unsafe"
 )
 
-// Open concurrent mode
+// open concurrent mode
 var concurrent = false
 
 // Response body
@@ -29,6 +29,7 @@ var reversiGame ReversiGame
 // Status code: Continue Game
 var CONTINUE = 3
 
+// Define the weighted board
 var blackBoardValues = [8][8]int{
 	{6, -2, 4, 3, 3, 4, -2, 6},
 	{-2, -4, -3, 1, 1, -3, -4, -2},
@@ -51,6 +52,7 @@ var whiteBoardValues = [8][8]int{
 	{6, -2, 4, 3, 3, 4, -2, 6},
 }
 
+// A heuristic algorithm based on weighted board
 func heuristic(currTurn int, availaPos *[]PiecePosition, reverseCounts *[]int, maxReverse int) int {
 	tempBlackBoardValues := [8][8]int{
 		{6, -2, 4, 3, 3, 4, -2, 6},
@@ -80,6 +82,8 @@ func heuristic(currTurn int, availaPos *[]PiecePosition, reverseCounts *[]int, m
 	} else {
 		values = &tempWhiteBoardValues
 	}
+
+	// Update weights
 	for i := 0; i < len(*reverseCounts); i++ {
 		if (*availaPos)[i].Equal(PiecePosition{X: 0, Y: 0}) {
 			values[0][1] = 6
@@ -98,6 +102,7 @@ func heuristic(currTurn int, availaPos *[]PiecePosition, reverseCounts *[]int, m
 			values[7][6] = 6
 			return i
 		}
+		// Pick a position with the highest weight
 		if (*reverseCounts)[i] == maxReverse && values[(*availaPos)[i].Y][(*availaPos)[i].X] > maxValue {
 			maxValue = values[(*availaPos)[i].Y][(*availaPos)[i].X]
 			maxIndex = i
@@ -106,8 +111,11 @@ func heuristic(currTurn int, availaPos *[]PiecePosition, reverseCounts *[]int, m
 	return maxIndex
 }
 
+// run MCTS concurrently
 func concurrentMCTS(root *MCTNode, secondLimit float64, currTurn int) PiecePosition {
 	results := make(chan PiecePosition, 3)
+
+	// run 3 goroutines, it depends on CPU performance
 	for i := 0; i < 3; i++ {
 		node := CopyMCTNode(root)
 		go monteCarloTreeSearch(&node, secondLimit, results)
@@ -119,6 +127,8 @@ func concurrentMCTS(root *MCTNode, secondLimit float64, currTurn int) PiecePosit
 		values = &whiteBoardValues
 	}
 	maxPosition := <-results
+
+	// AI does not have available position to move, so exit
 	if maxPosition.X == -1 && maxPosition.Y == -1 {
 		// clear the channel
 		for i := 0; i < 2; i++ {
@@ -126,6 +136,7 @@ func concurrentMCTS(root *MCTNode, secondLimit float64, currTurn int) PiecePosit
 		}
 		return maxPosition
 	}
+	// Pick the position that has the highest weight
 	maxWeight := values[maxPosition.Y][maxPosition.X]
 	for i := 0; i < 2; i++ {
 		result := <-results
@@ -137,6 +148,7 @@ func concurrentMCTS(root *MCTNode, secondLimit float64, currTurn int) PiecePosit
 	return maxPosition
 }
 
+// MCTS algorithm
 func monteCarloTreeSearch(root *MCTNode, secondLimit float64, results chan PiecePosition) PiecePosition {
 	start := time.Now()
 	if root.IsFinalLeafNode() {
@@ -147,8 +159,11 @@ func monteCarloTreeSearch(root *MCTNode, secondLimit float64, results chan Piece
 	}
 	root.InitUnexpChildren()
 	node := new(MCTNode)
+	// Loop for 5 sec
 	for (time.Now().Sub(start)).Seconds() <= secondLimit {
+		// Start searching from the root node
 		node = root
+		// Selection
 		for !node.IsFinalLeafNode() {
 			if !node.IsFullyExpanded() {
 				node = node.ExpandChild()
@@ -157,6 +172,7 @@ func monteCarloTreeSearch(root *MCTNode, secondLimit float64, results chan Piece
 			}
 			node = node.FindBestChild(1.96)
 		}
+		// Simulation
 		gameState := CopyGameState(node.GameState)
 		var reverseCounts []int
 		var maxReverse int
@@ -170,6 +186,7 @@ func monteCarloTreeSearch(root *MCTNode, secondLimit float64, results chan Piece
 				gameState.CurrTurn = currTurn * -1
 				continue
 			}
+			// use heuristic algorithm instead randomly choose
 			index = heuristic(currTurn, &availaPos, &reverseCounts, maxReverse)
 			gameState.PlayNextStep(availaPos[index])
 		}

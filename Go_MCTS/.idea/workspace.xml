@@ -19,7 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c4da3-a319-43c0-8174-d8bc21d71b36" name="Default Changelist" comment="" />
+    <list default="true" id="3d4c4da3-a319-43c0-8174-d8bc21d71b36" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../FastAPI_Server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FastAPI_Server/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameState.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameState.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MCTNode.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MCTNode.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/MonteCarloTreeSearch.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/MonteCarloTreeSearch.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ReversiGame.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ReversiGame.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_Reversi/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_Reversi/package-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

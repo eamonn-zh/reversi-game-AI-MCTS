@@ -8,12 +8,13 @@ var positionDiffX = [8]int{-1, 0, 1, -1, 1, -1, 0, 1}
 var positionDiffY = [8]int{-1, -1, -1, 0, 0, 1, 1, 1}
 
 type GameState struct {
-	State    [8][8]int
-	CurrTurn int
-	BlackPos []PiecePosition
-	WhitePos []PiecePosition
+	State    [8][8]int  // 8x8 game board
+	CurrTurn int  // current turn (black or white)
+	BlackPos []PiecePosition  // positions of all black pieces
+	WhitePos []PiecePosition  // positions of all white pieces
 }
 
+// constructor
 func NewGameState() GameState {
 	gameState := new(GameState)
 	for i := 0; i < 8; i++ {
@@ -31,8 +32,10 @@ func NewGameState() GameState {
 	return *gameState
 }
 
+// copy constructor
 func CopyGameState(gameState GameState) GameState {
 	newGameState := new(GameState)
+	// copy the 8x8 game board
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++{
 			newGameState.State[i][j] = gameState.State[i][j]
@@ -48,6 +51,7 @@ func CopyGameState(gameState GameState) GameState {
 	return *newGameState
 }
 
+// receive the user's input of next position, then update the game state
 func (gameState *GameState) PlayNextStep(pos PiecePosition)  {
 	gameState.CurrTurn *= -1
 	gameState.State[pos.Y][pos.X] = gameState.CurrTurn
@@ -62,6 +66,8 @@ func (gameState *GameState) PlayNextStep(pos PiecePosition)  {
 	}
 	*currPosList = append(*currPosList, pos)
 	var temp []PiecePosition
+
+	// Flip pieces
 	for i := 0; i < 8; i++ {
 		temp = temp[:0]
 		newPos := PiecePosition{pos.X + positionDiffX[i], pos.Y + positionDiffY[i]}
@@ -86,6 +92,7 @@ func (gameState *GameState) PlayNextStep(pos PiecePosition)  {
 	}
 }
 
+// Get the available positions to play
 func (gameState *GameState) GetAvailablePos(turn int, reverseCounts *[]int, maxReverse *int) []PiecePosition {
 	var availablePos []PiecePosition
 	var tempPosList *[]PiecePosition
@@ -94,6 +101,7 @@ func (gameState *GameState) GetAvailablePos(turn int, reverseCounts *[]int, maxR
 	} else {
 		tempPosList = &gameState.WhitePos
 	}
+	// Check neighbors
 	for _, pos := range *tempPosList {
 		for i := 0; i < 8; i++ {
 			newPos := PiecePosition{pos.X + positionDiffX[i], pos.Y + positionDiffY[i]}
@@ -122,12 +130,14 @@ func (gameState *GameState) GetAvailablePos(turn int, reverseCounts *[]int, maxR
 	return availablePos
 }
 
+// If both players have no available position to move, or one player has zero pieces, game over
 func (gameState *GameState) IsGameOver() bool {
 	return (len(gameState.GetAvailablePos(WHITE, nil, nil)) == 0 &&
 		len(gameState.GetAvailablePos(BLACK, nil, nil)) == 0) ||
 		len(gameState.BlackPos) == 0 || len(gameState.WhitePos) == 0
 }
 
+// The player with more pieces wins
 func (gameState *GameState) CheckResult() int {
 	if len(gameState.BlackPos) == len(gameState.WhitePos) {
 		return DRAW

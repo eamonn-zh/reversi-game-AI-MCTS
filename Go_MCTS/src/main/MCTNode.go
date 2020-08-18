@@ -4,6 +4,7 @@ import (
 	"math"
 )
 
+// Monte Carlo Tree Node
 type MCTNode struct {
 	GameState          GameState
 	Parent             *MCTNode
@@ -14,6 +15,7 @@ type MCTNode struct {
 	VisitedCount       int
 }
 
+// Constructor
 func NewMCTNode(gameState *GameState, parent *MCTNode, diff *PiecePosition) MCTNode {
 	scoreMap := map[int]int{}
 	scoreMap[1] = 0
@@ -23,26 +25,31 @@ func NewMCTNode(gameState *GameState, parent *MCTNode, diff *PiecePosition) MCTN
 	return node
 }
 
+// Copy constructor for deep copy
 func CopyMCTNode(mctNode *MCTNode) MCTNode {
 	newMCTNode := new(MCTNode)
+	// Copy score maps
 	scoreMap := map[int]int{}
 	scoreMap[1] = mctNode.ScoreMap[1]
 	scoreMap[0] = mctNode.ScoreMap[0]
 	scoreMap[-1] = mctNode.ScoreMap[-1]
 	newMCTNode.ScoreMap = scoreMap
+
 	newMCTNode.Parent = mctNode.Parent
+
 	newMCTNode.Children = make([]*MCTNode, len(mctNode.Children))
 	copy(newMCTNode.Children, mctNode.Children)
 	newMCTNode.UnexpandedChildren = make([]*MCTNode, len(mctNode.UnexpandedChildren))
 	copy(newMCTNode.UnexpandedChildren, mctNode.UnexpandedChildren)
+
 	newMCTNode.Diff = PiecePosition{mctNode.Diff.X, mctNode.Diff.Y}
 	newMCTNode.VisitedCount = mctNode.VisitedCount
 	newMCTNode.GameState = CopyGameState(mctNode.GameState)
 	return *newMCTNode
 }
 
+// Initialize the unexpanded children nodes
 func (mctNode *MCTNode) InitUnexpChildren() {
-
 	turn := mctNode.GameState.CurrTurn
 	availaPos := mctNode.GameState.GetAvailablePos(turn, nil, nil)
 	if len(availaPos) == 0 {
@@ -60,6 +67,7 @@ func (mctNode *MCTNode) InitUnexpChildren() {
 
 }
 
+// Move one child node from unexpanded slice to children slice
 func (mctNode *MCTNode) ExpandChild() *MCTNode {
 	child := mctNode.UnexpandedChildren[len(mctNode.UnexpandedChildren)-1]
 	mctNode.UnexpandedChildren = mctNode.UnexpandedChildren[:len(mctNode.UnexpandedChildren)-1]
@@ -67,20 +75,24 @@ func (mctNode *MCTNode) ExpandChild() *MCTNode {
 	return child
 }
 
+// Check if a node's children are all expanded
 func (mctNode *MCTNode) IsFullyExpanded() bool {
 	return len(mctNode.UnexpandedChildren) == 0
 }
 
+// Check if a node is a leaf node
 func (mctNode *MCTNode) IsFinalLeafNode() bool {
 	return mctNode.GameState.IsGameOver()
 }
 
+// Scores = wins count - loses count
 func (mctNode *MCTNode) GetScore() int {
 	wins := mctNode.ScoreMap[mctNode.GameState.CurrTurn]
 	loses := mctNode.ScoreMap[mctNode.GameState.CurrTurn*-1]
 	return wins - loses
 }
 
+// Find the best child for next simulation
 func (mctNode *MCTNode) FindBestChild(c float64) *MCTNode {
 	maxUCTValue := float64(mctNode.Children[0].GetScore())/float64(mctNode.Children[0].VisitedCount) +
 		math.Sqrt(c*2*math.Log(float64(mctNode.VisitedCount)/float64(mctNode.Children[0].VisitedCount)))
@@ -98,6 +110,7 @@ func (mctNode *MCTNode) FindBestChild(c float64) *MCTNode {
 	return bestChild
 }
 
+// Increase the visited count
 func (mctNode *MCTNode) IncreVistedCount() {
 	mctNode.VisitedCount++
 }

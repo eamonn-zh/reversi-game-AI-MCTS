@@ -55,3 +55,15 @@ Then open your web browser and access http://localhost:8080/
 
 
 *Notes: Due to unknown reasons, Chef cannot run the Node.js web server in background with command `npm run serve &`, so I use `npm run serve` instead, which will stall the bash when you execute `vagrant provision`, it does not affect the operation of the program.*
+
+---------------------------------------------------------------------------------------------------------------
+
+### 5. Concurrent Limitation
+
+MCTS requires a lot of calculations, but the virtual machines has limited performance,  so running MCTS concurrently on poorly performing hardware is not always good. To solve this problem, I implemented two versions of MCTS, with or without concurrency, I defined a flag in my code (at **Go_MCTS/src/main/MonteCarloTreeSearch.go**, line 14) and the default version is without concurrency. You can manually switch the flag to turn on / off concurrency:
+
+```go
+// open concurrent mode
+var concurrent = false
+```
+

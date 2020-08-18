@@ -9,6 +9,7 @@ from starlette.middleware.cors import CORSMiddleware
 from ctypes import *
 import json
 
+# Foreign function interface
 lib = cdll.LoadLibrary("lib/MonteCarloTreeSearch.so")
 
 app = FastAPI()
@@ -21,6 +22,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"])
 
+# Define the return types from ctypes
 lib.startGame.restype = c_void_p
 lib.nextStep.restype = c_void_p
 lib.waitForAI.restype = c_void_p
@@ -29,40 +31,68 @@ lib.passCurrentTurn.restype = c_void_p
 
 @app.get("/start/{order}")
 async def start_game(order: int):
-    string = lib.startGame(order)
+    """
+        API 1: start the Reversi game
+
+        Args:
+            order: the player order (1 or 2)
+
+        Returns:
+            a json dict containing game info
+    """
+    string = lib.startGame(order)  # call foreign function from Go
     reversi_game_result = cast(string, c_char_p).value.decode()
-    # free memory
-    lib.freeMemory(string)
-    json_obj = json.loads(reversi_game_result)
+    lib.freeMemory(string)  # free memory
+    json_obj = json.loads(reversi_game_result)  # convert string to json data
     return json_obj
 
 
 @app.get("/next/{positionX}/{positionY}")
 async def play_next_step(positionX: int, positionY: int):
-    string = lib.nextStep(positionX, positionY)
+    """
+        API 2: receive the user's play
+
+        Args:
+            positionX: the user's next piece position X on game board
+            positionY: the user's next piece position Y on game board
+
+        Returns:
+            a json dict containing game info
+    """
+    string = lib.nextStep(positionX, positionY)  # call foreign function from Go
     reversi_game_result = cast(string, c_char_p).value.decode()
-    # free memory
-    lib.freeMemory(string)
-    json_obj = json.loads(reversi_game_result)
+    lib.freeMemory(string)  # free memory
+    json_obj = json.loads(reversi_game_result)  # convert string to json data including the game states
     return json_obj
 
 
 @app.get("/wait")
 async def wait_for_AI():
-    string = lib.waitForAI()
+    """
+        API 3: wait for AI's play
+
+        Returns:
+            a json dict containing game info
+    """
+    string = lib.waitForAI()  # call foreign function from Go
     reversi_game_result = cast(string, c_char_p).value.decode()
-    # free memory
-    lib.freeMemory(string)
+    lib.freeMemory(string)  # free memory
     json_obj = json.loads(reversi_game_result)
     return json_obj
 
 
 @app.get("/pass")
 async def pass_current_turn():
-    string = lib.passCurrentTurn
+    """
+        API 4: pass current turn
+        Called when user has no available positions to play
+
+        Returns:
+            a json dict containing game info
+    """
+    string = lib.passCurrentTurn  # call foreign function from Go
     reversi_game_result = cast(string, c_char_p).value.decode()
-    # free memory
-    lib.freeMemory(string)
+    lib.freeMemory(string)    # free memory
     json_obj = json.loads(reversi_game_result)
     return json_obj
 
