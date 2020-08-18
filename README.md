@@ -54,7 +54,18 @@ Then open your web browser and access http://localhost:8080/
 
 
 
-*Notes: Due to unknown reasons, Chef cannot run the Node.js web server in background with command `npm run serve &`, so I use `npm run serve` instead, which will stall the bash when you execute `vagrant provision`, it does not affect the operation of the program.*
+*Notes: Due to unknown reasons, Chef cannot run the Node.js web server in background with command `npm run serve &`, so I use `npm run serve` instead, which will stall the bash when execute `vagrant provision`, it does not affect the operation of the program. When you see:*
+
+```bash
+==> default:                 App running at:
+==> default:                 - Local:   http://localhost:8080/ 
+==> default:                 - Network: http://10.0.2.15:8080/
+==> default:               
+==> default:                 Note that the development build is not optimized.
+==> default:                 To create a production build, run npm run build.
+==> default:   
+```
+*Now the project are running, just visit http://localhost:8080/.*
 
 ---------------------------------------------------------------------------------------------------------------
 
@@ -67,3 +78,4 @@ MCTS requires a lot of calculations, but the virtual machines has limited perfor
 var concurrent = false
 ```
 
+After modifying the flag, please run `vagrant provision` to re-run the provisioner.

@@ -75,13 +75,13 @@ end
 
 
 # Copy Go share library to FastAPI_Server folder
-execute 'cp MonteCarloTreeSearch.so ' + project_home + '/FastAPI_Server/lib' do
+execute 'cp MonteCarloTreeSearch.so ' + project_home + '/FastAPI_Server/lib/' do
   cwd project_home + '/Go_MCTS'
   user username
   environment 'HOME' => user_home
 end
 
-execute 'cp MonteCarloTreeSearch.h ' + project_home + '/FastAPI_Server/lib' do
+execute 'cp MonteCarloTreeSearch.h ' + project_home + '/FastAPI_Server/lib/' do
   cwd project_home + '/Go_MCTS'
   user username
   environment 'HOME' => user_home
