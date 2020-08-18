@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
     # Display the VirtualBox GUI when booting the machine
     # vb.gui = true
     vb.cpus = 2
-    vb.memory = 2048
+    vb.memory = 4096
     # speed up boot: https://bugs.launchpad.net/cloud-images/+bug/1829625
     vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
     vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
