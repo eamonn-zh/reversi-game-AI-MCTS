@@ -293,7 +293,9 @@
             that.drawAvailablePosition(position.Y, position.X);
           }
           that.drawAllPieces();
-          that.drawLastPiece(response.data.LastPiece.Y, response.data.LastPiece.X);
+          if (role === 2) {
+            that.drawLastPiece(response.data.LastPiece.Y, response.data.LastPiece.X);
+          }
           that.currTurn = response.data.CurrTurn;
           that.showAvailablePos = true;
           that.blackCount = response.data.BlackCount;
