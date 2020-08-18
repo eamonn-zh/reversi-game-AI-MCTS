@@ -21,6 +21,7 @@ type ReversiGameResult struct {
 	GameStatus   int
 	BlackCount   int
 	WhiteCount   int
+	LastPiece    PiecePosition
 }
 
 // An reversi game
@@ -210,12 +211,16 @@ func monteCarloTreeSearch(root *MCTNode, secondLimit float64, results chan Piece
 //export startGame
 func startGame(choice int) *C.char {
 	reversiGame = NewReversiGame()
+	var pos PiecePosition
 	if choice == 2 {
 		root := NewMCTNode(&reversiGame.GameState, nil, &PiecePosition{X: 0, Y: 0})
+
 		if concurrent {
-			reversiGame.PlayNextStep(concurrentMCTS(&root, 5, reversiGame.GameState.CurrTurn))
+			pos = concurrentMCTS(&root, 5, reversiGame.GameState.CurrTurn)
+			reversiGame.PlayNextStep(pos)
 		} else {
-			reversiGame.PlayNextStep(monteCarloTreeSearch(&root, 5, nil))
+			pos = monteCarloTreeSearch(&root, 5, nil)
+			reversiGame.PlayNextStep(pos)
 		}
 	}
 	reversiGameResult := new(ReversiGameResult)
@@ -225,6 +230,7 @@ func startGame(choice int) *C.char {
 	reversiGameResult.GameStatus = CONTINUE
 	reversiGameResult.BlackCount = len(reversiGame.GameState.BlackPos)
 	reversiGameResult.WhiteCount = len(reversiGame.GameState.WhitePos)
+	reversiGameResult.LastPiece = pos
 	jsonData, _ := json.Marshal(reversiGameResult)
 	return C.CString(string(jsonData))
 }
@@ -254,6 +260,7 @@ func waitForAI() *C.char {
 	reversiGameResult.CurrTurn = reversiGame.GameState.CurrTurn
 	reversiGameResult.BlackCount = len(reversiGame.GameState.BlackPos)
 	reversiGameResult.WhiteCount = len(reversiGame.GameState.WhitePos)
+	reversiGameResult.LastPiece = pos
 	jsonData, _ := json.Marshal(reversiGameResult)
 	return C.CString(string(jsonData))
 }
@@ -271,6 +278,7 @@ func nextStep(positionX int, positionY int) *C.char {
 	reversiGameResult.CurrTurn = reversiGame.GameState.CurrTurn
 	reversiGameResult.BlackCount = len(reversiGame.GameState.BlackPos)
 	reversiGameResult.WhiteCount = len(reversiGame.GameState.WhitePos)
+	reversiGameResult.LastPiece = PiecePosition{positionX, positionY}
 	jsonData, _ := json.Marshal(reversiGameResult)
 	return C.CString(string(jsonData))
 }
