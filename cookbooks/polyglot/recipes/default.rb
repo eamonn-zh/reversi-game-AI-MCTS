@@ -75,6 +75,7 @@ end
 
 
 # Copy Go share library to FastAPI_Server folder
+directory project_home + '/FastAPI_Server/lib'
 execute 'cp MonteCarloTreeSearch.so ' + project_home + '/FastAPI_Server/lib/' do
   cwd project_home + '/Go_MCTS'
   user username
@@ -97,7 +98,7 @@ end
 
 
 # Download node_modules
-execute 'npm install && npm audit fix' do
+execute 'npm install --silent && npm audit fix' do
   cwd project_home + '/Web_Reversi'
 end
 
