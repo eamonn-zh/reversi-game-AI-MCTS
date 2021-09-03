@@ -1,9 +1,6 @@
 ## Reversi Game AI Based on Concurrent Monte Carlo Tree Search (MCTS)
 
-CMPT 383 Final Project
-
 Yiming Zhang (301354482)
-
 
 
 ---------------------------------------------------------------------------------------------------------------
